@@ -2,27 +2,55 @@
 
 //import TextInput from "./components/TextInput";
 //import Welcome from "./components/Welcome";
-import { useState } from "react";
-import AddUsers from "./components/users/AddUsers";
-import UsersList from "./components/users/UsersList";
-
+import React, { useState, useEffect } from 'react'
+import AddExpense from "./components/users/AddExpense";
+import ExpenseList from "./components/users/ExpenseList";
+import Expenses from "./components/users/Expenses";
 
 
 function App(){
-  const [usersList,setUsersList]=useState([]);
+  const [expenses,setExpenses]=useState([]);
+  const [expenseList,setExpenseList]=useState([]);
+  const onAddExpenseHandler=(expenseName, expenseAmount,expenseDate)=>{
+  
+      setExpenseList((prevState)=>{
+        //console.log(expenseList);
+      return[...prevState,{name:expenseName,amount:expenseAmount,date:expenseDate,id:Math.random().toString()}]}
+  );
+  setExpenses((prevState)=>{
+    //console.log(expenseList);
+  return[...prevState,{name:expenseName,amount:expenseAmount,date:expenseDate,id:Math.random().toString()}]}
+);
+  /* let expense={
+    Ename:expenseName, Eamount:expenseAmount,  Edate:expenseDate};
+    localStorage.setItem('expenses',JSON.stringify({...expense})); */
+ }
 
-const onAddUserHandler=(userName, userAge)=>{
-  setUsersList((prevState)=>{
-    return[...prevState,{name:userName,age:userAge,id:Math.random().toString()}]}
-  )
-}
+ /* 
+  useEffect((expenseName, expenseAmount,expenseDate) => {
+    let expenses={
+      Ename:expenseName, Eamount:expenseAmount,  Edate:expenseDate};
+  localStorage.setItem('expenses', JSON.stringify(expenses))}, [expenses]);
 
+  */
+
+ /* const handle = (expenseName, expenseAmount,expenseDate) => {
+   let expense={
+     Ename:expenseName, Eamount:expenseAmount,  Edate:expenseDate};
+     localStorage.setItem(expense,JSON.stringify({...expense}));
+   } 
+ */
   return (
     <div>
-      <AddUsers onAddUser={onAddUserHandler}/>
-      <UsersList list={usersList}/>
+     <AddExpense onAddExpense={onAddExpenseHandler} />
+     {/* {<AddExpense onAddExpense={handle}/> } */}
+      <ExpenseList list={expenseList}/>
+      <Expenses items={expenses} /> 
     </div>
+    
+  
   );
-}
+};
+
 
 export default App;

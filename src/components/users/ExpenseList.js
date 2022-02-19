@@ -1,18 +1,18 @@
 import React from "react";
 import Card from "../UI/Card";
 
-const UsersList=(props)=>{
+const ExpenseList=(props)=>{
     return (
         <Card>
-            <ul>
+            <ol>
                 {props.list.map((user)=>(
                     <li key={user.id}>
-                        {user.name} ({user.age} years old)
+                       You bought "{user.name}" for Rs. {user.amount} on {user.date}
                     </li>
                 ))}
-            </ul>
+            </ol>
         </Card>
     );
 }
 
-export default UsersList;
+export default ExpenseList;
