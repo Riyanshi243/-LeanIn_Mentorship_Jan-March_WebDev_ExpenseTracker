@@ -5,13 +5,14 @@ const ExpenseList=(props)=>{
 
     return (
         <Card>
-            <ul>
+            <h2>Filtered List of Expenses</h2>
+            <ol>
                 {props.list.map((user)=>(
                     <li key={user.id}>
                        You bought "{user.name}" for Rs. {user.amount} on {user.date}
                     </li>
                 ))}
-            </ul>
+            </ol>
         </Card>
     );
 }

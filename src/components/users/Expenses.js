@@ -8,35 +8,14 @@ const Expenses = (props) => {
   const [filteredYear, setFilteredYear] = useState('');
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
-   //console.log(selectedYear);
-   //const year = props.date.toString();
-  // if(selectedYear===year)
- // console.log(props.date);
   };
-  /* const filteredExpenses = props.items.map((expense) => {
-    //return expense.date.getFullYear().toString() === filteredYear;
-    console.log(expense.date);
-  }); */
+  
   console.log(filteredYear);
-  const filteredExpenses = props.items.map((user)=>{
-    //return user.date.toString() === 2022;
-    /* if(user.date.toString.substring(3)===filteredYear)
-    console.log("true")
-    return user.name; */
-    if (user.date.toString().startsWith(filteredYear)){
-       return user;
-    }
-    return null;
+  const filteredExpenses = props.items.filter((user)=>{
+    return user.date.toString().startsWith(filteredYear)
   });
-      console.log(filteredExpenses);
-      //<ExpenseList list={filteredExpenses}/>
-  /*let expensesContent = null;
-
-  if (filteredExpenses.length > 0) {
-    expensesContent = filteredExpenses.map((expense) => (
-      <ExpenseList list={expense}/>
-    ));
-  } */
+  console.log(filteredExpenses);
+   
   return (
     <div>
       <Card>
@@ -45,7 +24,7 @@ const Expenses = (props) => {
           onChangeFilter={filterChangeHandler}
         />
       </Card>
-      {/* <ExpenseFilterList list={filteredExpenses}/> */}
+      <ExpenseFilterList list={filteredExpenses}/>
     </div>
   );
 };
